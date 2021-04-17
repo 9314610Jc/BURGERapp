@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
   
     console.log('condition', condition);
   
-    cat.updateOne(
+    burger.updateOne(
       {
         
         devoured: req.body.devoured,
