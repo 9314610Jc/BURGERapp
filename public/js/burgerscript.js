@@ -1,0 +1,156 @@
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    if (event) {
+      console.info('DOM loaded');
+    }
+})
+  
+    const devourBtn = document.querySelectorAll('.devourBtn');
+    const createBtn = document.getElementById('create-form')
+  
+    // // Set up the event listener for the create button
+    if(createBtn){
+      createBtn.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const newBurger = {
+        name : document.getElementById('bn').value.trim(),
+        devoured: false,
+      }
+     console.log('button pressed')
+      fetch('/api/burgers', {
+        method: "POST",
+        headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+        body: JSON.stringify(newBurger)
+
+      }).then(() => {
+
+      document.getElementById('bn').value = '';
+      location.reload();
+    }
+      )
+  })
+}
+if(devourBtn){
+  devourBtn.forEach((button)=>{
+    button.addEventListener('click', (event)=>{
+      const id = event.target.getAttribute('data-id');
+      const burgerState = {
+        devoured : true,
+      }
+      fetch(`/api/burgers/${id}`,{
+        method: 'PUT',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+      
+                
+                body: JSON.stringify(burgerState),
+      }).then((response) => {
+                // Check that the response is all good
+                // Reload the page so the user can see the new quote
+                if (response.ok) {
+                  console.log(`changed sleep to: ${burgerState}`);
+                  location.reload('/');
+                } else {
+                  alert('something went wrong!');
+                }
+    })
+  })
+}
+  )
+}
+    // if (changeSleepBtns) {
+    //   changeSleepBtns.forEach((button) => {
+    //     button.addEventListener('click', (e) => {
+    //       // Grabs the id of the element that goes by the name, "id"
+    //       const id = e.target.getAttribute('data-id');
+    //       const newDevour = e.target.getAttribute('data-newsleep');
+  
+    //       const burgerState = {
+    //         sleepy: newSleep,
+    //       };
+  
+    //       fetch(`/api/burgers/${id}`, {
+    //        method: 'PUT',
+    //         headers: {
+    //           Accept: 'application/json',
+    //           'Content-Type': 'application/json',
+    //         },
+  
+    //         // make sure to serialize the JSON body
+    //         body: JSON.stringify(newSleepState), 
+    //       }).then((response) => {
+    //         // Check that the response is all good
+    //         // Reload the page so the user can see the new quote
+    //         if (response.ok) {
+    //           console.log(`changed sleep to: ${newSleep}`);
+    //           location.reload('/');
+    //         } else {
+    //           alert('something went wrong!');
+    //         }
+    //       });
+    //     });
+    //   });
+    // }
+  
+    // // CREATE
+    // const createCatBtn = document.getElementById('create-form');
+  
+    // if (createCatBtn) {
+    //   createCatBtn.addEventListener('submit', (e) => {
+    //     e.preventDefault();
+  
+    //     // Grabs the value of the textarea that goes by the name, "quote"
+    //     const newCat = {
+    //       name: document.getElementById('ca').value.trim(),
+    //       sleepy: document.getElementById('sleepy').checked,
+    //     };
+  
+    //     // Send POST request to create a new quote
+    //     fetch('/api/cats', {
+    //       method: 'POST',
+    //       headers: {
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json',
+    //       },
+  
+    //       // make sure to serialize the JSON body
+    //       body: JSON.stringify(newCat),
+    //     }).then(() => {
+    //       // Empty the form
+    //       document.getElementById('ca').value = '';
+  
+    //       // Reload the page so the user can see the new quote
+    //       console.log('Created a new cat!');
+    //       location.reload();
+    //     });
+    //   });
+    // }
+  
+    // // DELETE
+    // const deleteCatBtns = document.querySelectorAll('.delete-cat');
+  
+    // // Set up the event listeners for each delete button
+    // deleteCatBtns.forEach((button) => {
+    //   button.addEventListener('click', (e) => {
+    //     const id = e.target.getAttribute('data-id');
+  
+    //     // Send the delete request
+    //     fetch(`/api/cats/${id}`, {
+    //       method: 'DELETE',
+    //     }).then((res) => {
+    //       console.log(res);
+    //       console.log(`Deleted cat: ${id}`);
+  
+    //       // Reload the page
+    //       location.reload();
+    //     });
+    //   });
+    // });
+ 
+  

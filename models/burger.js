@@ -1,11 +1,11 @@
 const orm = require('../config/orm.js');
 
 const burger = {
-    selectAll(tableInput, cb) {
-      orm.selectAll(tableInput, (res) => cb(res));
+    selectAll(cb) {
+      orm.selectAll('burgers', (res) => cb(res));
     },
     // The variables cols and vals are arrays.
-    Insertone(cols, vals, cb) {
+    insertOne(cols, vals, cb) {
       orm.Insertone('burgers', cols, vals, (res) => cb(res));
     },
     updateOne( objColVals, condition, cb) {
