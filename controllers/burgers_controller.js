@@ -6,7 +6,7 @@ const router = express.Router();
   //router.get
 router.get("/", (req, res) => {
   burger.selectAll((burgers_db) => {
-    console.log(burgers_db);
+    
     res.render("index", { burgers: burgers_db });
   });
 });

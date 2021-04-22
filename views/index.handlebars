@@ -1,7 +1,24 @@
-<h1>Eat da Burger!</h1>
+<div class="row">
+  <div class="col-12">
+<h1 class="text-center">Eat da Burger!</h1>
+  </div>
+</div>
+<div class="row">
 
-<h2>burger!</h2>
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+ <i class="fas fa-hamburger fa-10x "></i>
+    </div>
 
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-4">
+<h2 style="padding-left: 25%;">Undevoured Burgers</h2>
+<div class="d-flex justify-content-center">
+  
 <ul>
   {{#each burgers}}
   {{#unless this.devoured}}
@@ -12,22 +29,30 @@
   {{/unless}}
   {{/each}}
 </ul>
+  </div>
+</div>
 
+  <div class="col-4">
 <h2>Devoured Burgers</h2>
 <ul>
   {{#each burgers}}
   {{#if this.devoured}}
   <li>
      {{this.id}} {{this.burger_name}}
-     <button class="delete-burger">Delete</button>
+     <button class="delete-burger" data-id="{{this.id}}">Delete</button>
   </li>
   {{/if}}
   {{/each}}
+  </div>
+  <div class="col-2"></div>
+</div>
+<div class="row">
+  <div class="col-4"></div>
+  <div class="col-4 ">
+          <h2 style="padding-left: 25%;" class="">Add a BURGER</h2>
+    <div class="d-flex justify-content-center">
 
-
-<h2>Add a BURGER</h2>
 <form id="create-form">
-
   <div class="form-group">
     <label for="burgerName">burger name:</label>
     <input type="text" id="bn" name="name">
@@ -39,3 +64,17 @@
 
   <button type="submit">Add burger</button>
 </form>
+  </div>
+    </div>
+
+    <div class="col-4"></div>
+</div>
+
+
+
+
+
+
+
+
+
